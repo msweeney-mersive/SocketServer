@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name = "kotlin_server_port">7654</integer>
+    <integer name = "kotlin_server_max_clients">10</integer>
+</resources>
