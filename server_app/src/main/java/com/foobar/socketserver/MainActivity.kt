@@ -3,11 +3,24 @@ package com.foobar.socketserver
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import java.net.SocketException
 
 class MainActivity : AppCompatActivity() {
     private val tag = this.javaClass.simpleName
 
     lateinit var kServer : KServer
+    val nativeThread :Thread
+
+    init {
+        nativeThread = Thread {
+            try {
+                doSomething()
+            } catch (ex: Exception) {
+                Log.e(tag, "Error listening!", ex)
+            }
+        }
+        Log.d(tag, "starting native worker thread")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +41,20 @@ class MainActivity : AppCompatActivity() {
         Log.d(tag, "onResume(), calling native function ...")
         var s = stringFromJNI()
         Log.d(tag, "native function returned: ${s}")
-        doSomething()
+
+        nativeThread.start();
     }
 
     override fun onDestroy() {
+        Log.d(tag, "onDestroy()")
         super.onDestroy()
+
+        try {
+            nativeThread.interrupt()
+            nativeThread.join(500)
+        } catch (ex: Exception) {
+            Log.w(tag, "Failed to stop nativeThread", ex)
+        }
         kServer.close()
     }
 

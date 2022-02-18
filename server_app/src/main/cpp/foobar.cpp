@@ -8,7 +8,7 @@ Java_com_foobar_socketserver_MainActivity_doSomething(
         JNIEnv* env, jobject) {
     int socket = doSomething();
 
-    __android_log_print(ANDROID_LOG_VERBOSE, "doSomething", "Socket value %d", socket);
+    __android_log_print(ANDROID_LOG_VERBOSE, "foobar", "Socket value %d", socket);
 
     return;
 }
