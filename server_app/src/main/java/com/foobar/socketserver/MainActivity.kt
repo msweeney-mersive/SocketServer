@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val kport =  resources.getInteger(R.integer.kotlin_server_port)
         val kmaxClients =  resources.getInteger(R.integer.kotlin_server_max_clients)
         Log.d(tag, "Kotlin server, max number of connected clients: ${kmaxClients}")
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(tag, "onResume(), calling native function ...")
         var s = stringFromJNI()
         Log.d(tag, "native function returned: ${s}")
+        doSomething()
     }
 
     override fun onDestroy() {
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     external fun stringFromJNI(): String
+    external fun doSomething(): Unit
 
     companion object {
         init {

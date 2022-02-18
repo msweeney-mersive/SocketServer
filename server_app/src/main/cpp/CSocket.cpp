@@ -12,5 +12,5 @@
 
 int doSomething() {
     int sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
-    return 0;
+    return sock;
 }

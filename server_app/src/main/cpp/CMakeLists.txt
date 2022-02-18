@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(csocket
     SHARED
-        CSocket.c
+        CSocket.cpp
         foobar.cpp
 )
 
