@@ -4,9 +4,9 @@
 #include "CSocket.h"
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_foobar_socketserver_MainActivity_doSomething(
+Java_com_foobar_socketserver_MainActivity_nativeListen(
         JNIEnv* env, jobject) {
-    int socket = doSomething();
+    int socket = nativeListen();
 
     __android_log_print(ANDROID_LOG_VERBOSE, "foobar", "Socket value %d", socket);
 

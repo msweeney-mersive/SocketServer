@@ -3,7 +3,6 @@ package com.foobar.socketserver
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import java.net.SocketException
 
 class MainActivity : AppCompatActivity() {
     private val tag = this.javaClass.simpleName
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     init {
         nativeThread = Thread {
             try {
-                doSomething()
+                nativeListen()
             } catch (ex: Exception) {
                 Log.e(tag, "Error listening!", ex)
             }
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     external fun stringFromJNI(): String
-    external fun doSomething(): Unit
+    external fun nativeListen(): Unit
 
     companion object {
         init {
