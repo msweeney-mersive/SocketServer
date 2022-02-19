@@ -1,2 +1,2 @@
 # SocketServer
-Socket bencmarking sandbox
+Socket benchmarking sandbox
